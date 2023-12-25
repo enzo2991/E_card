@@ -106,9 +106,9 @@ Citizen.CreateThread(function()
 				action = "close"
 			})
 			cardOpen = false
-            img_tex = nil
-            img_txd = nil
-            imageBase64= nil
+            		img_tex = nil
+            		img_txd = nil
+            		imageBase64= nil
 		end
         if cardOpen then
             -- print(img_tex)
