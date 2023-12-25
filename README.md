@@ -6,6 +6,7 @@
 
 ## Requirement
 
+- ES_Extended
 - <a href="https://github.com/overextended/ox_inventory" target="_blank">ox_inventory<a>
 - <a href="https://github.com/overextended/ox_target" target="_blank">ox_target<a>
 - <a href="https://github.com/BaziForYou/MugShotBase64" target="_blank">MugShotBase64<a>
