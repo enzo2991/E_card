@@ -139,7 +139,6 @@ Citizen.CreateThread(function()
                                 end,
                                 onSelect = function(data)
                                     local TargetID = NetworkGetPlayerIndexFromPed(data.entity)
-                                    TriggerEvent("dpemotes:playEmote","idcarde")
                                     TriggerServerEvent("jsfour-legitimation:open", i.metadata, GetPlayerServerId(TargetID))
                                 end}
             end
