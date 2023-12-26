@@ -131,7 +131,8 @@ Citizen.CreateThread(function()
                                 icon = 'fa-solid fa-people-arrows',
                                 label = "Montrer la carte d'identité de "..i.metadata.firstname.." "..i.metadata.lastname,
                                 canInteract = function(entity, distance)
-                                    if IsPedFatallyInjured(PlayerPedId()) or IsPedCuffed(PlayerPedId()) or IsEntityPlayingAnim(PlayerPedId(), 'mp_arresting', 'idle', 3) or IsEntityPlayingAnim(PlayerPedId(), 'missminuteman_1ig_2', 'handsup_base', 3) or IsEntityPlayingAnim(PlayerPedId(), 'missminuteman_1ig_2', 'handsup_enter', 3) or IsEntityPlayingAnim(PlayerPedId(), 'random@mugging3', 'handsup_standing_base', 3) then return end
+                                    local playerPed = PlayerPedId()
+                                    if IsPedFatallyInjured(playerPed) or IsPedCuffed(playerPed) or IsEntityPlayingAnim(playerPed, 'mp_arresting', 'idle', 3) or IsEntityPlayingAnim(playerPed, 'missminuteman_1ig_2', 'handsup_base', 3) or IsEntityPlayingAnim(playerPed, 'missminuteman_1ig_2', 'handsup_enter', 3) or IsEntityPlayingAnim(playerPed, 'random@mugging3', 'handsup_standing_base', 3) then return end
                                     if IsPedAPlayer(entity) and distance < 2.0 then
                                         return true
                                     end
