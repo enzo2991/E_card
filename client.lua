@@ -122,9 +122,9 @@ end)
 Citizen.CreateThread(function()
     while true do
         local idCard = {}
-        local countIdCard = exports.ox_inventory:Search('count', 'identification')
+        local countIdCard = exports.ox_inventory:Search('count', Config.item)
         if countIdCard > 0 then
-            local itemsIdCard = exports.ox_inventory:Search('slots', 'identification')
+            local itemsIdCard = exports.ox_inventory:Search('slots', Config.item)
             for k,i in pairs(itemsIdCard) do
                 idCard[#idCard+1] = {
                                 name = 'ox_card:action:ShowCard'..k,
