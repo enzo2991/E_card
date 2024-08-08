@@ -3,7 +3,7 @@ local function loadTarget(ped)
         if ped then
             exports.ox_target:addLocalEntity(ped,{
                 name = 'e_card:createCardPed',
-                label = '📸 Creer une carte d\'identité',
+                label = '📸 '..Translate('createCard'),
                 distance = 2.0,
                 onSelect = function()
                     TriggerServerEvent("e_card:getCardPlayer")
@@ -26,24 +26,42 @@ local function loadTarget(ped)
         end
     else
         CreateThread(function()
+            local uiText = Translate('uiText')
             local playerPed = cache.ped
             if ped then
                 while true do
                     local playerCoords = GetEntityCoords(playerPed)
+                    local isOpen, currentText = lib.isTextUIOpen()
                     if #(playerCoords - Config.ped.pos) < 2.5 then
+                        if not isOpen then
+                            lib.showTextUI(uiText)
+                        end
                         if IsControlJustReleased(0,51) then
                             TriggerServerEvent("e_card:getCardPlayer")
                         end
+                    else
+                        if isOpen and currentText == uiText then
+                            lib.hideTextUI()
+                        end
                     end
+
                     Wait(1)
                 end
             else
                 while true do
+                    local isOpen, currentText = lib.isTextUIOpen()
                     if InZone then
+                        if not isOpen then
+                            lib.showTextUI(uiText)
+                        end
                         local playerCoords = GetEntityCoords(playerPed)
                         if IsControlJustReleased(0,51) then
                             local playerId = lib.getClosestPlayer(playerCoords)
                             TriggerServerEvent("e_card:getCardPlayer",playerId)
+                        end
+                    else
+                        if isOpen and currentText == uiText then
+                            lib.hideTextUI()
                         end
                     end
                     Wait(1)
