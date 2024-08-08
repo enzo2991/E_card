@@ -1,7 +1,7 @@
 RegisterNetEvent("otz_client:getIdCard")
 AddEventHandler("otz_client:getIdCard",function()
     local _source = source
-    if Framework == 'esx' then
+    if Config.Framework == 'ESX' then
         local xPlayer = ESX.GetPlayerFromId(_source)
         local metaData = {
             firstname = xPlayer.get("firstName"),
@@ -15,7 +15,7 @@ AddEventHandler("otz_client:getIdCard",function()
             -- if no slots are available, the value will be "inventory_full"
             return print(response)
         end
-    elseif Framework == 'qbcore' then
+    elseif Framework == 'QB' then
     else
         -- custom framework
     end

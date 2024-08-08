@@ -1,0 +1,5 @@
+Framework()
+Playerloaded()
+
+LoadPed()
+LoadZone()
