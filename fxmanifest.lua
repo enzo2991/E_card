@@ -7,7 +7,7 @@ version '1.0.0'
 
 server_script {'Framework/sv_wrapper.lua','server.lua'}
 
-shared_script {'@ox_lib/init.lua','config.lua'}
+shared_script {'@ox_lib/init.lua','config.lua','locale.lua','locales/*.lua',}
 
 client_script {'Framework/cl_wrapper.lua','client.lua'}
 

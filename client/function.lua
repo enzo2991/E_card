@@ -12,7 +12,7 @@ local function loadTarget(ped)
         else
             exports.ox_target:addGlobalPlayer({
                 name = 'e_card:createCardPlayer',
-                label = '📸 Creer une carte d\'identité',
+                label = '📸 '..Translate('createCard'),
                 distance = 2.0,
                 groups = Config.interactPlayer.jobs,
                 canInteract = function ()

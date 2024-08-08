@@ -1,3 +1,3 @@
-Locales['sv'] = {
-	['']	= '',
+Locales['en'] = {
+	['createCard']	= 'Identity card creation',
 }
