@@ -5,11 +5,11 @@ game 'gta5'
 author 'Enzo'
 version '1.0.0'
 
-server_script {'sv_wrapper.lua','server.lua'}
+server_script {'Framework/sv_wrapper.lua','server.lua'}
 
 shared_script {'@ox_lib/init.lua','config.lua'}
 
-client_script {'cl_wrapper.lua','client.lua'}
+client_script {'Framework/cl_wrapper.lua','client.lua'}
 
 ui_page 'web/build/index.html'
 
