@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNuiEvent } from './hooks/useNuiEvent'
 import { useKeyPress } from './hooks/useKeyPress'
+import { fetchNui } from './utils/fetchNui'
+import { convertImage } from './utils/imagetobase64'
 
 interface dataEntry {
   card: string,
@@ -27,6 +29,11 @@ const App: React.FC = () => {
       setData(null)
     }
   },[isEscapePressed, isBackspacePressed,isVisible])
+
+  useNuiEvent('getMugshot',async (data)  => {
+    const baseUrl = await convertImage(data.txd);
+    fetchNui("answerMugshot",{url:baseUrl})
+  })
 
   useNuiEvent('openUi',(data) =>{
     if (!isVisible){
