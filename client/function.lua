@@ -1,3 +1,58 @@
+local function loadTarget(ped)
+    if Config.target then
+        if ped then
+            exports.ox_target:addLocalEntity(ped,{
+                name = 'e_card:createCardPed',
+                label = '📸 Creer une carte d\'identité',
+                distance = 2.0,
+                onSelect = function()
+                    TriggerServerEvent("e_card:getCardPlayer")
+                end
+            })
+        else
+            exports.ox_target:addGlobalPlayer({
+                name = 'e_card:createCardPlayer',
+                label = '📸 Creer une carte d\'identité',
+                distance = 2.0,
+                groups = Config.interactPlayer.jobs,
+                canInteract = function ()
+                    return InZone
+                end,
+                onSelect = function(data)
+                    local playerId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity))
+                    TriggerServerEvent("e_card:getCardPlayer",playerId)
+                end
+            })
+        end
+    else
+        CreateThread(function()
+            local playerPed = cache.ped
+            if ped then
+                while true do
+                    local playerCoords = GetEntityCoords(playerPed)
+                    if #(playerCoords - Config.ped.pos) < 2.5 then
+                        if IsControlJustReleased(0,51) then
+                            TriggerServerEvent("e_card:getCardPlayer")
+                        end
+                    end
+                    Wait(1)
+                end
+            else
+                while true do
+                    if InZone then
+                        local playerCoords = GetEntityCoords(playerPed)
+                        if IsControlJustReleased(0,51) then
+                            local playerId = lib.getClosestPlayer(playerCoords)
+                            TriggerServerEvent("e_card:getCardPlayer",playerId)
+                        end
+                    end
+                    Wait(1)
+                end
+            end
+        end)
+    end
+end
+
 function LoadPed()
     local config = Config.interactPlayer
     if config.activate then
@@ -8,6 +63,7 @@ function LoadPed()
             FreezeEntityPosition(ped, true)
             SetEntityInvincible(ped, true)
             SetBlockingOfNonTemporaryEvents(ped, true)
+            loadTarget(ped)
         end
     end
 end
@@ -28,5 +84,6 @@ function LoadZone()
                 debug = config.debug
             })
         end
+        loadTarget()
     end
 end
